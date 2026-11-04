@@ -1,0 +1,35 @@
+services:
+  backend:
+    build:
+        context: .
+        dockerfile: ./api/dockerfile.dev
+    container_name: monster_economy_api
+    working_dir: /var/www
+    volumes:
+        - ./api:/var/www
+    ports:
+        - "8080:8080"
+    env_file:
+        - ./api/.env
+    command: php artisan serve --host=0.0.0.0 --port=8080
+
+  postgres:
+    image: postgres:18-alpine
+    container_name: monster_economy_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: monster_economy_db
+      POSTGRES_USER: monster_economy
+      POSTGRES_PASSWORD: masterkey
+    ports:
+      - "5546:5432"
+    volumes:
+      - monster_economy_postgres_data:/var/lib/postgresql
+    healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U monster_economy -d monster_economy_db"]
+        interval: 5s
+        timeout: 5s
+        retries: 10
+
+volumes:
+  monster_economy_postgres_data:

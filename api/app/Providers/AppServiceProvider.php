@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Providers;
+
+use App\Repositories\Eloquent\BaseEloquentRepository;
+use App\Repositories\Eloquent\LocationEloquent\LocationEloquentRepository;
+use App\Repositories\Eloquent\LocationEloquent\LocationRouteEloquentRepository;
+use App\Repositories\Eloquent\VehicleEloquent\VehicleEloquentRepository;
+use App\Repositories\Interface\BaseInterface;
+use App\Repositories\Interface\LocationInterface\LocationInterface;
+use App\Repositories\Interface\LocationInterface\LocationRouteInterface;
+use App\Repositories\Interface\VehicleInterface\VehicleInterface;
+use Illuminate\Support\ServiceProvider;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        $this->app->bind(
+            BaseInterface::class,
+            BaseEloquentRepository::class
+        );
+
+        $this->app->bind(
+            VehicleInterface::class,
+            VehicleEloquentRepository::class
+        );
+
+        $this->app->bind(
+            LocationInterface::class,
+            LocationEloquentRepository::class
+        );
+
+        $this->app->bind(
+            LocationRouteInterface::class,
+            LocationRouteEloquentRepository::class
+        );
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        //
+    }
+}
