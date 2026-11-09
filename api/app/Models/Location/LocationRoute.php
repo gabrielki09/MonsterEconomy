@@ -5,6 +5,7 @@ namespace App\Models\Location;
 use App\Casts\Time\TimeCast;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[Fillable(
     'location_id',
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\Model;
 )]
 class LocationRoute extends Model
 {
+    use SoftDeletes;
+
     protected $casts = [
         'one_way_distance_km' => 'decimal:2',
         'round_trip_distance_km' => 'decimal:2',

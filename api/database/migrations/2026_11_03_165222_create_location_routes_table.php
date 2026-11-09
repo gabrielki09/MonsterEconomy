@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('location_id')->constrained('locations')->cascadeOnDelete();
             $table->foreignId('vehicle_id')->constrained('vehicles')->cascadeOnDelete();
-            $table->decimal('one_way_distance_km', 12,2);
-            $table->decimal('round_trip_distance_km', 12,2);
+            $table->decimal('one_way_distance_km', 12,2); // Distância somente de ida
+            $table->decimal('round_trip_distance_km', 12,2); // Distância total
             $table->time('estimated_minutes');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

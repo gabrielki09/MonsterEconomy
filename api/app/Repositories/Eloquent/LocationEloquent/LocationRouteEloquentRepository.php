@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Eloquent\LocationEloquent ;
+namespace App\Repositories\Eloquent\LocationEloquent;
 
 use App\Models\Location\LocationRoute;
 use App\Repositories\Eloquent\BaseEloquentRepository;

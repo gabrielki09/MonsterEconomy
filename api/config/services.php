@@ -35,4 +35,7 @@ return [
         ],
     ],
 
+    'cep' => [
+        'url' => env('ADDRESS_API_URL_V2')
+    ]
 ];
