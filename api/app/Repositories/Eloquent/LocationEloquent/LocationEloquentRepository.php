@@ -44,5 +44,4 @@ class LocationEloquentRepository extends BaseEloquentRepository implements Locat
     {
         return Location::class;
     }
-
 }

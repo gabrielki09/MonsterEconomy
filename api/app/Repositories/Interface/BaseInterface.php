@@ -16,7 +16,7 @@ interface BaseInterface
     public function update(Model $model, array $data): Model;
     public function find(int $id, array $columns = ['*']): ?Model;
     public function findBy(
-        array $parameters,
+        array $parameters = [],
         array $columns = ['*'],
         array $relationships = []
     ): ?Model;

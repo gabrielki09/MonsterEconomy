@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('monster_prices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('location_id')->constrained('locations')->cascadeOnDelete();
+            $table->foreignId('location_id')->nullable()->constrained('locations')->cascadeOnDelete();
             $table->foreignId('monster_product_id')->constrained('monster_products')->cascadeOnDelete();
             $table->decimal('unit_price', 12,2);
-            $table->timestamp('recorded_at');
             $table->boolean('available')->default(true);
             $table->timestamps();
         });

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('monster_products', function (Blueprint $table) {
             $table->id();
             $table->string('name', 120);
-            $table->decimal('volume_ml', 12,2);
+            $table->decimal('volume_ml', 12,2)->default(473.00);
             $table->softDeletes();
             $table->timestamps();
         });

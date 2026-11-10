@@ -283,7 +283,7 @@ abstract class BaseEloquentRepository implements BaseInterface
         return $model;
     }
 
-    public function findBy(array $parameters, array $columns = ['*'], array $relationships = []): ?Model
+    public function findBy(array $parameters = [], array $columns = ['*'], array $relationships = []): ?Model
     {
         if ($parameters === []) {
             throw new InvalidArgumentException(
@@ -300,6 +300,8 @@ abstract class BaseEloquentRepository implements BaseInterface
         {
             $query->where($column, $value);
         }
+
+        Log::info('q', ['q' => $query]);
 
         return $query->first();
     }

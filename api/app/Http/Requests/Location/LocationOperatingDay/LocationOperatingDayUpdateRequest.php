@@ -4,6 +4,7 @@ namespace App\Http\Requests\Location\LocationOperatingDay;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LocationOperatingDayUpdateRequest extends FormRequest
 {
@@ -23,7 +24,8 @@ class LocationOperatingDayUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            ''
+            'location_id' => ['required', 'exists:locations,id', 'integer'],
+
         ];
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Requests\Location\Location\LocationUpdateRequest;
 use App\Http\Requests\Location\LocationOperatingDay\LocationOperatingDayUpdateRequest;
 use App\Services\LocationService\LocationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class LocationController extends Controller
 {
@@ -36,8 +37,25 @@ class LocationController extends Controller
     {
         return apiSuccess(
             'Local cadastrado com sucesso!',
-            $this->locationService->create($request->validated()),
-            201
+            [
+                'location' => $this->locationService->create($request->validated()),
+            ],
+            status: 201
+        );
+    }
+
+    public function getOpeningHours(Request $req, string $location)
+    {
+        Log::info($req->all());
+
+        return apiSuccess(
+            'Dados do local',
+            $this->locationService->findBy(
+                parameters: [
+                    'location' => $location,
+                    'day' => $req->input('day')
+                ]
+            )
         );
     }
 
@@ -59,15 +77,9 @@ class LocationController extends Controller
     {
         return apiSuccess(
             'Dados atualizados',
-            $this->locationService->update($request->validated(), $id)
-        );
-    }
-
-    public function updateOperatingnDay(LocationOperatingDayUpdateRequest $req)
-    {
-        return apiSuccess(
-            'Dados atualizados',
-            $this->locationService->update($request->validated(), $id)
+            [
+                'location' => $this->locationService->update($request->validated(), $id)
+            ]
         );
     }
 

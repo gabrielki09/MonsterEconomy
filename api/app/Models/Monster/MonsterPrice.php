@@ -9,13 +9,11 @@ use Illuminate\Database\Eloquent\Model;
     'location_id',
     'monster_product_id',
     'unit_price',
-    'recorded_at',
     'available'
 )]
 class MonsterPrice extends Model
 {
     protected $casts = [
-        'unit_price' => 'decimal:2',
-        'recorded_at' => 'decimal:2',
+        'unit_price' => 'decimal:2'
     ];
 }
